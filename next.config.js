@@ -1,21 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ["ts", "tsx", "md", "mdx"],
   experimental: {
-    mdxRs: true,
+    appDir: true,
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.vox-cdn.com",
-      },
-      {
-        protocol: "https",
-        hostname: "www.starknet.io",
-      },
-    ],
-  },
+  pageExtensions: ["ts", "tsx", "mdx"],
 };
 
 const withMDX = require("@next/mdx")();

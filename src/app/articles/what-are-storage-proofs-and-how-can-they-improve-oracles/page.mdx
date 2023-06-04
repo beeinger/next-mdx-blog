@@ -71,12 +71,14 @@ contract Migrations {
 
 The `owner` variable would be stored at slot 0. Now, to generate the proof that the `owner` of this contract was an address A, we can use the `getProof` function as follows:
 
-```solidity
-web3.eth.getProof(
-  "Oxcca577ee56d30a444c73f8fc8d5ce34ed1c7da8b", // corresponding to the address of the deployed contract
-  ["0x0000000000000000000000000000000000000000000000000000000000000000"], // corresponding to slot O
-  "Ox10185A7" // the 0x10185A7 corresponds to block 16876967
-).then(console.log);
+```javascript
+web3.eth
+  .getProof(
+    "Oxcca577ee56d30a444c73f8fc8d5ce34ed1c7da8b", // corresponding to the address of the deployed contract
+    ["0x0000000000000000000000000000000000000000000000000000000000000000"], // corresponding to slot O
+    "Ox10185A7" // the 0x10185A7 corresponds to block 16876967
+  )
+  .then(console.log);
 ```
 
 The output of the code above looks something like this:

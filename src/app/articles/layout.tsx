@@ -21,6 +21,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
           />
         </div>
       )}
+      <div className="mx-auto">
+        <span className="mr-2">{metadata.date}</span>·<span className="ml-2">{metadata.readingTime} read</span>
+      </div>
       {children}
     </article>
   );
