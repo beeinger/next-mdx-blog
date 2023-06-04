@@ -1,3 +1,3 @@
 import { Metadata } from "next";
 
-export type ArticleMetadata = Metadata & { slug: string; readingTime: string; preview: string };
+export type ArticleMetadata = Metadata & { slug: string; readingTime: string; preview: string; date?: string };

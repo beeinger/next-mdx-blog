@@ -32,7 +32,7 @@ export const getArticleMetadata = async (slug: string) => {
 
   //? Get preview from MDX file
   let preview = "";
-  if (rawMdx.includes("<!-- preview -->")) preview = rawMdx.split("<!-- preview -->")[1].split("<!-- /preview -->")[0];
+  if (rawMdx.includes("{/* preview */}")) preview = rawMdx.split("{/* preview */}")[1].split("{/* /preview */}")[0];
 
   return { ...metadata, slug, readingTime, preview };
 };
