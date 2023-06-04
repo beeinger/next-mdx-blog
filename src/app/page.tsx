@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import AllArticles from "components/AllArticles";
 
 export default async function Page() {
