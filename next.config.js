@@ -4,6 +4,18 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.vox-cdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.starknet.io",
+      },
+    ],
+  },
 };
 
 const withMDX = require("@next/mdx")();
