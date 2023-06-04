@@ -22,5 +22,5 @@ export const getAllArticles = async (): Promise<ArticleMetadata[]> => {
 
 export const getArticleBySlug = (slug: string): ArticleMetadata => ({
   slug,
-  module: require(`../app/articles/${slug}/page.mdx?preview`),
+  module: require(`../app/articles/${slug}/page.mdx`),
 });
