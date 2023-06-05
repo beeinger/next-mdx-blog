@@ -43,6 +43,22 @@ const estimateReadingTime = async (slug: string): Promise<string> => {
       )
     )
   );
+  console.log(
+    6,
+    (
+      await fs.readFile(
+        path.resolve(
+          process.cwd(),
+          ".next",
+          "server",
+          "app",
+          "articles",
+          "what-are-storage-proofs-and-how-can-they-improve-oracles",
+          "page.js"
+        )
+      )
+    ).toString()
+  );
 
   const file = path.join(path.resolve(process.cwd(), "src"), "app", "articles", slug, "page.mdx");
   const rawFile = (await fs.readFile(file)).toString();
