@@ -3,7 +3,7 @@ const _estimateReadTime = require("reading-time");
 
 const estimateReadTime = createLoader(function (src) {
   const readTime = _estimateReadTime(src).text;
-  const withTime = [src, `export const readingTime = "${readTime}";`].join("\n");
+  const withTime = [src, `export const metadata_readingTime = "${readTime}";`].join("\n");
   return this.callback(null, withTime);
 });
 

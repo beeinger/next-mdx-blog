@@ -1744,11 +1744,6 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-children-utilities@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-2.9.0.tgz#03deea009fc9fa1857a14fb351afa68d870f646f"
-  integrity sha512-B3enhwcibIziobkMVccLd+6uIRoiCC9OZ1nR2B5sFCTnUYoGOCqgPOWUL+IC4S8IYaaN5AeF+SS0X1wernPdZA==
-
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"

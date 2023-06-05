@@ -10,7 +10,7 @@ const importAll = (r): Promise<Article[]> =>
         slug,
         metadata: module?.metadata,
         component: module?.default,
-        readingTime: module?.readingTime,
+        readingTime: module?.metadata_readingTime,
       } satisfies Article;
     })
   );
@@ -28,6 +28,6 @@ export const getArticleBySlug = async (slug: string): Promise<Article> => {
     slug,
     component: module?.default,
     metadata: module?.metadata,
-    readingTime: module?.readingTime,
+    readingTime: module?.metadata_readingTime,
   };
 };
