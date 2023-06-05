@@ -1,7 +1,4 @@
-import path from "path";
-import { promises as fs } from "fs";
 import { Article } from "types";
-import estimateReadTime from "reading-time";
 
 const importAll = (r): Promise<Article[]> =>
   Promise.all(
@@ -13,7 +10,7 @@ const importAll = (r): Promise<Article[]> =>
         slug,
         metadata: module?.metadata,
         component: module?.default,
-        readingTime: await estimateReadingTime(slug),
+        readingTime: module?.readingTime,
       } satisfies Article;
     })
   );
@@ -24,48 +21,6 @@ export const getAllArticles = async (): Promise<Article[]> =>
     require.context("../app/articles/", true, /^\.\/[^\/]+\/page\.mdx$/)
   );
 
-const estimateReadingTime = async (slug: string): Promise<string> => {
-  console.log(0, await fs.readdir(path.resolve(process.cwd())));
-  console.log(1, await fs.readdir(path.resolve(process.cwd(), ".next")));
-  console.log(2, await fs.readdir(path.resolve(process.cwd(), ".next", "server")));
-  console.log(3, await fs.readdir(path.resolve(process.cwd(), ".next", "server", "app")));
-  console.log(4, await fs.readdir(path.resolve(process.cwd(), ".next", "server", "app", "articles")));
-  console.log(
-    5,
-    await fs.readdir(
-      path.resolve(
-        process.cwd(),
-        ".next",
-        "server",
-        "app",
-        "articles",
-        "what-are-storage-proofs-and-how-can-they-improve-oracles"
-      )
-    )
-  );
-  console.log(
-    6,
-    (
-      await fs.readFile(
-        path.resolve(
-          process.cwd(),
-          ".next",
-          "server",
-          "app",
-          "articles",
-          "what-are-storage-proofs-and-how-can-they-improve-oracles",
-          "page.js"
-        )
-      )
-    ).toString()
-  );
-
-  const file = path.join(path.resolve(process.cwd(), "src"), "app", "articles", slug, "page.mdx");
-  const rawFile = (await fs.readFile(file)).toString();
-
-  return estimateReadTime(rawFile).text;
-};
-
 export const getArticleBySlug = async (slug: string): Promise<Article> => {
   const module = require(`../app/articles/${slug}/page.mdx`);
 
@@ -73,6 +28,6 @@ export const getArticleBySlug = async (slug: string): Promise<Article> => {
     slug,
     component: module?.default,
     metadata: module?.metadata,
-    readingTime: await estimateReadingTime(slug),
+    readingTime: module?.readingTime,
   };
 };

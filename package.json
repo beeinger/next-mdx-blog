@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",
     "reading-time": "^1.5.0",
-    "sharp": "^0.32.1"
+    "sharp": "^0.32.1",
+    "simple-functional-loader": "^1.2.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

@@ -6,5 +6,5 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
 };
 
-const withMDX = require("@next/mdx")();
+const withMDX = require("./mdx-loader")();
 module.exports = withMDX(nextConfig);
