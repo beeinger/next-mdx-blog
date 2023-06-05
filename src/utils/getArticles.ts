@@ -26,10 +26,11 @@ export const getAllArticles = async (): Promise<Article[]> =>
 
 const estimateReadingTime = async (slug: string): Promise<string> => {
   console.log(0, await fs.readdir(path.resolve(process.cwd())));
-  console.log(1, await fs.readdir(path.resolve(process.cwd(), "src")));
-  console.log(2, await fs.readdir(path.resolve(process.cwd(), "src", "app")));
-  console.log(3, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles")));
-  console.log(4, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles", slug)));
+  console.log(0, await fs.readdir(path.resolve(process.cwd(), ".next")));
+  // console.log(1, await fs.readdir(path.resolve(process.cwd(), "src")));
+  // console.log(2, await fs.readdir(path.resolve(process.cwd(), "src", "app")));
+  // console.log(3, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles")));
+  // console.log(4, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles", slug)));
 
   const file = path.join(path.resolve(process.cwd(), "src"), "app", "articles", slug, "page.mdx");
   const rawFile = (await fs.readFile(file)).toString();
