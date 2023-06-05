@@ -1,4 +1,6 @@
-# RULES
+# Guide for adding articles
+
+> To check if everything worked as you expected just do `yarn` - to install dependencies, `yarn dev` - to run the code and open it on [`localhost:3000`](http://localhost:3000)
 
 1. Each article's folder structure should be:
 
@@ -34,6 +36,8 @@
 
 4. Metadata should match the following type:
 
+   > Don't get scared by the huge object below, it's Next.js Metadata object that translates to meta tags and is needed for better SEO, if you don't care just use the Required/Recommended fields
+
    ````ts
    {
 
@@ -43,6 +47,7 @@
     description: string;
     image: string;
     date: string;
+    authors: string | string[];
 
     <!-- Full Metadata possibilities, SEO -->
 
