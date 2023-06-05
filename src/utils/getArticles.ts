@@ -1,26 +1,43 @@
-import { ArticleMetadata } from "types";
+import path from "path";
+import { promises as fs } from "fs";
+import { Article } from "types";
+import estimateReadTime from "reading-time";
 
-function importAll(r) {
-  return r.keys().map((fileName) => ({
-    slug: fileName.substr(2).replace(/\/page\.mdx$/, ""),
-    module: r(fileName),
-  }));
-}
+const importAll = (r): Promise<Article[]> =>
+  Promise.all(
+    r.keys().map(async (fileName) => {
+      const module = r(fileName);
+      const slug = fileName.substr(2).replace(/\/page\.mdx$/, "");
 
-function dateSortDesc(a, b) {
-  if (a > b) return -1;
-  if (a < b) return 1;
-  return 0;
-}
+      return {
+        slug,
+        metadata: module?.metadata,
+        component: module?.default,
+        readingTime: await estimateReadingTime(slug),
+      } satisfies Article;
+    })
+  );
 
-export const getAllArticles = async (): Promise<ArticleMetadata[]> => {
-  //@ts-ignore
-  return importAll(require.context("../app/articles/", true, /^\.\/[^\/]+\/page\.mdx$/))
-    .filter((p) => p.module.metadata.private !== true)
-    .sort((a, b) => dateSortDesc(a.module.metadata.date, b.module.metadata.date));
+export const getAllArticles = async (): Promise<Article[]> =>
+  importAll(
+    //@ts-ignore
+    require.context("../app/articles/", true, /^\.\/[^\/]+\/page\.mdx$/)
+  );
+
+const estimateReadingTime = async (slug: string): Promise<string> => {
+  const file = path.resolve(process.cwd(), "src", "app", "articles", slug, "page.mdx");
+  const rawFile = (await fs.readFile(file)).toString();
+
+  return estimateReadTime(rawFile).text;
 };
 
-export const getArticleBySlug = (slug: string): ArticleMetadata => ({
-  slug,
-  module: require(`../app/articles/${slug}/page.mdx`),
-});
+export const getArticleBySlug = async (slug: string): Promise<Article> => {
+  const module = require(`../app/articles/${slug}/page.mdx`);
+
+  return {
+    slug,
+    component: module?.default,
+    metadata: module?.metadata,
+    readingTime: await estimateReadingTime(slug),
+  };
+};

@@ -1,14 +1,12 @@
 import { Metadata } from "next";
 
-export type ArticleMetadata = {
+export type Article = {
   slug: string;
-  module: {
-    metadata: Metadata & {
-      slug: string;
-      readingTime: string;
-      preview: string;
-      date?: string;
-      image?: string;
-    };
+  metadata: Metadata & {
+    slug: string;
+    date?: string;
+    image?: string;
   };
+  component: any;
+  readingTime: string;
 };
