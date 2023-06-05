@@ -25,7 +25,7 @@ export const getAllArticles = async (): Promise<Article[]> =>
   );
 
 const estimateReadingTime = async (slug: string): Promise<string> => {
-  const file = path.resolve(process.cwd(), "src", "app", "articles", slug, "page.mdx");
+  const file = path.join(path.resolve(process.cwd(), "src"), "app", "articles", slug, "page.mdx");
   const rawFile = (await fs.readFile(file)).toString();
 
   return estimateReadTime(rawFile).text;
