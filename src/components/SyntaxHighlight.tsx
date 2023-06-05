@@ -6,7 +6,6 @@ import theme from "react-syntax-highlighter/dist/cjs/styles/hljs/atelier-dune-da
 
 export default function SyntaxHighlight({ className, children }: { className: string; children: string }) {
   const language = className?.replace("language-", "");
-  console.log(language);
 
   return (
     <SyntaxHighlighter language={language} style={theme} PreTag={React.Fragment}>

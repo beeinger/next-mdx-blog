@@ -1,7 +1,7 @@
+import path from "path";
 import { promises as fs } from "fs";
 import { Article } from "types";
 import estimateReadTime from "reading-time";
-import Children from "react-children-utilities";
 
 const importAll = (r): Promise<Article[]> =>
   Promise.all(
@@ -13,7 +13,7 @@ const importAll = (r): Promise<Article[]> =>
         slug,
         metadata: module?.metadata,
         component: module?.default,
-        readingTime: await estimateReadingTime(module),
+        readingTime: await estimateReadingTime(slug),
       } satisfies Article;
     })
   );
@@ -24,8 +24,13 @@ export const getAllArticles = async (): Promise<Article[]> =>
     require.context("../app/articles/", true, /^\.\/[^\/]+\/page\.mdx$/)
   );
 
-const estimateReadingTime = async (module): Promise<string> => {
-  const file = Children.onlyText(module.default).split(`fileName: "`).pop().split(`"`).shift();
+const estimateReadingTime = async (slug: string): Promise<string> => {
+  console.log(1, await fs.readdir(path.resolve(process.cwd(), "src")));
+  console.log(2, await fs.readdir(path.resolve(process.cwd(), "src", "app")));
+  console.log(3, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles")));
+  console.log(4, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles", slug)));
+
+  const file = path.join(path.resolve(process.cwd(), "src"), "app", "articles", slug, "page.mdx");
   const rawFile = (await fs.readFile(file)).toString();
 
   return estimateReadTime(rawFile).text;
@@ -38,6 +43,6 @@ export const getArticleBySlug = async (slug: string): Promise<Article> => {
     slug,
     component: module?.default,
     metadata: module?.metadata,
-    readingTime: await estimateReadingTime(module),
+    readingTime: await estimateReadingTime(slug),
   };
 };
