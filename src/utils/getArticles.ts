@@ -25,6 +25,7 @@ export const getAllArticles = async (): Promise<Article[]> =>
   );
 
 const estimateReadingTime = async (slug: string): Promise<string> => {
+  console.log(0, await fs.readdir(path.resolve(process.cwd())));
   console.log(1, await fs.readdir(path.resolve(process.cwd(), "src")));
   console.log(2, await fs.readdir(path.resolve(process.cwd(), "src", "app")));
   console.log(3, await fs.readdir(path.resolve(process.cwd(), "src", "app", "articles")));
