@@ -1,5 +1,5 @@
 import React from "react";
-import { Article } from "types";
+import { Article } from "types/article";
 
 export default function ArticleInfo({
   article: { metadata, readingTime },

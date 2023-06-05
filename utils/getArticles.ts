@@ -1,4 +1,4 @@
-import { Article } from "types";
+import { Article } from "types/article";
 
 const importAll = (r): Promise<Article[]> =>
   Promise.all(

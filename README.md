@@ -2,7 +2,7 @@
 
 1. Each article's folder structure should be:
 
-   > Put it inside `src/app/articles/` folder
+   > Put it inside `/app/articles/` folder
 
    - `<slug>` - folder
      - `page.mdx` - article's content
